@@ -26,7 +26,12 @@ class ShoppingCart extends Component {
 
     getShoppingCart(cart) {
         return cart.map(item => (
-            <CartItem item={item} key={item.id} addToCart={this.addToCart} removeFromCart={this.removeFromCart} />
+            <CartItem
+                item={item}
+                key={item.id}
+                addToCart={this.addToCart}
+                removeFromCart={this.removeFromCart}
+            />
         ));
     }
 
@@ -36,19 +41,16 @@ class ShoppingCart extends Component {
             <Fragment>
                 <Header title="Your Cart" />
                 <div className="cart container">
-                    {shoppingCart && shoppingCart.length && (
+                    {shoppingCart && shoppingCart.length ? (
                         <ul className="cartList">
                             {this.getShoppingCart(shoppingCart)}
                         </ul>
-                    )}
-                    {!shoppingCart.length && (
-                        <p className="noItems">
-                            You have no items in your cart!
-                        </p>
-                    )}
-                    <p className="backBtn"><Link to="/" className="primaryBtn">
-                        BACK TO SHOPPING
-                    </Link></p>
+                    ):<p className="noItems">You have no items in your cart!</p>}
+                    <p className="backBtn">
+                        <Link to="/" className="primaryBtn">
+                            BACK TO SHOPPING
+                        </Link>
+                    </p>
                 </div>
             </Fragment>
         );
@@ -58,7 +60,8 @@ class ShoppingCart extends Component {
 function mapDispatchToProps(dispatch) {
     return {
         addToCart: (cart, product) => dispatch(addToCart(cart, product)),
-        removeFromCart: (cart, product) => dispatch(removeFromCart(cart, product))
+        removeFromCart: (cart, product) =>
+            dispatch(removeFromCart(cart, product))
     };
 }
 
@@ -96,7 +99,7 @@ const CartItem = ({ item, addToCart, removeFromCart }) => {
                 </div>
                 <div className="makeFlex price vrtlCenter">
                     <span className="appendRight20">Price: </span>
-                    <span>₹{price}</span>
+                    <span>₹{price * quantity}</span>
                 </div>
             </div>
         </li>

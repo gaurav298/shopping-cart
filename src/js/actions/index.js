@@ -35,8 +35,6 @@ export const addToCart = (cart, product) => {
         for (let i = 0; i < cart.length; i++) {
             if (cart[i].id === product.id) {
                 cart[i].quantity += 1;
-                cart[i].price =
-                    cart[i].price * cart[i].quantity;
                 return {
                     type: consts.MODIFY_CART,
                     payload: cart
@@ -55,8 +53,6 @@ export const removeFromCart = (cart, product) => {
     for (let i = 0; i < cart.length; i++) {
         if (cart[i].id === product.id && product.quantity > 1) {
             cart[i].quantity -= 1;
-            cart[i].price =
-                cart[i].price * cart[i].quantity;
             return {
                 type: consts.MODIFY_CART,
                 payload: cart
