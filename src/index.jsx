@@ -5,6 +5,7 @@ import store from "./js/store";
 import { Provider } from "react-redux";
 import "StyleSheets/common.css";
 import Home from "Components/Home/Home";
+import ShoppingCart from "Components/ShoppingCart/ShoppingCart";
 
 class App extends Component {
     render() {
@@ -13,7 +14,7 @@ class App extends Component {
                 <Router>
                     <Switch>
                         <Route exact path="/" component={Home} />
-                        {/* <Route path="/cart" component={shoppingCart} /> */}
+                        <Route path="/shoppingCart" component={ShoppingCart} />
                     </Switch>
                 </Router>
             </Provider>

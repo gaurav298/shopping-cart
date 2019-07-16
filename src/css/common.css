@@ -1,0 +1,54 @@
+html,
+body {
+    background: #f2f2f2;
+    padding: 0;
+    margin: 0;
+    color: #4a4a4a;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.container {
+    width: 1200px;
+    margin: 0 auto;
+    background: #fff;
+    box-shadow: 0 0 4px 0 rgba(0, 0, 0, 0.3);
+    z-index: 10;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+ul {
+    margin: 0;
+    list-style: none;
+    padding: 0;
+}
+
+.makeFlex {
+    display: flex;
+}
+
+.makeFlex.column {
+    flex-direction: column;
+}
+
+a {
+    color: #008cff;
+    text-decoration: none;
+}
+a:hover,
+a:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+.bold {
+    font-weight: 900;
+    color: #000;
+    text-transform: capitalize;
+}

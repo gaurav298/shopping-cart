@@ -1,6 +1,6 @@
 import consts from "../consts";
 
-const cartReducer = (state = [], action) => {
+const cartReducer = (state = {shoppingCart: []}, action) => {
     switch (action.type) {
         case consts.GET_DATA:
             return {
@@ -20,6 +20,21 @@ const cartReducer = (state = [], action) => {
                 ...state,
                 loading: false,
                 error: true
+            };
+        case consts.FILTER_RESULTS:
+            return {
+                ...state,
+                filteredProducts: action.payload
+            };
+        case consts.ADD_TO_CART:
+            return {
+                ...state,
+                shoppingCart: [...state.shoppingCart, action.payload]
+            };
+        case consts.MODIFY_CART:
+            return {
+                ...state,
+                shoppingCart: [...action.payload]
             };
         default:
             return state;
