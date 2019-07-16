@@ -1,0 +1,12 @@
+[
+    { "id": 1, "productName": "Television" },
+    { "id": 2, "productName": "Mobile Phone" },
+    { "id": 3, "productName": "T-Shirt" },
+    { "id": 4, "productName": "Jeans" },
+    { "id": 5, "productName": "Refrigerator" },
+    { "id": 6, "productName": "Air Conditioner" },
+    { "id": 7, "productName": "Air Cooler" },
+    { "id": 8, "productName": "Water Purifier" },
+    { "id": 9, "productName": "Laptop" },
+    { "id": 10, "productName": "Bags" }
+]
