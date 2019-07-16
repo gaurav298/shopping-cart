@@ -36,6 +36,11 @@ const cartReducer = (state = {shoppingCart: []}, action) => {
                 ...state,
                 shoppingCart: [...action.payload]
             };
+        case consts.REMOVE_FROM_CART:
+            return {
+                ...state,
+                shoppingCart: [...action.payload]
+            };
         default:
             return state;
     }

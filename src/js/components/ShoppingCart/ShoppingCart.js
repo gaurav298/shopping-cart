@@ -3,7 +3,7 @@ import autoBind from "react-autobind";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import * as selectors from "../../selectors";
-import { addToCart } from "../../actions";
+import { addToCart, removeFromCart } from "../../actions";
 import Header from "Components/Header/Header";
 
 import "./ShoppingCart.css";
@@ -19,9 +19,14 @@ class ShoppingCart extends Component {
         this.props.addToCart(shoppingCart, product);
     }
 
+    removeFromCart(product) {
+        const { shoppingCart } = this.props;
+        this.props.removeFromCart(shoppingCart, product);
+    }
+
     getShoppingCart(cart) {
         return cart.map(item => (
-            <CartItem item={item} key={item.id} addToCart={addToCart} />
+            <CartItem item={item} key={item.id} addToCart={this.addToCart} removeFromCart={this.removeFromCart} />
         ));
     }
 
@@ -30,7 +35,7 @@ class ShoppingCart extends Component {
         return (
             <Fragment>
                 <Header title="Your Cart" />
-                <div className="container">
+                <div className="cart container">
                     {shoppingCart && shoppingCart.length && (
                         <ul className="cartList">
                             {this.getShoppingCart(shoppingCart)}
@@ -38,12 +43,12 @@ class ShoppingCart extends Component {
                     )}
                     {!shoppingCart.length && (
                         <p className="noItems">
-                            You have no items in your cart!.
+                            You have no items in your cart!
                         </p>
                     )}
-                    <Link to="/" className="primaryBtn">
+                    <p className="backBtn"><Link to="/" className="primaryBtn">
                         BACK TO SHOPPING
-                    </Link>
+                    </Link></p>
                 </div>
             </Fragment>
         );
@@ -52,7 +57,8 @@ class ShoppingCart extends Component {
 
 function mapDispatchToProps(dispatch) {
     return {
-        addToCart: (cart, product) => dispatch(addToCart(cart, product))
+        addToCart: (cart, product) => dispatch(addToCart(cart, product)),
+        removeFromCart: (cart, product) => dispatch(removeFromCart(cart, product))
     };
 }
 
@@ -67,11 +73,11 @@ export default connect(
     mapDispatchToProps
 )(ShoppingCart);
 
-const CartItem = ({ product, addToCart }) => {
-    const { productName } = product;
+const CartItem = ({ item, addToCart, removeFromCart }) => {
+    const { productName, quantity, price } = item;
     return (
-        <li className="makeFlex">
-            <p className="makeFlex column">
+        <li className="makeFlex vrtlCenter">
+            <p className="makeFlex column vrtlCenter appendRight50">
                 <img
                     src="public/images/dummyProduct.jpg"
                     className="dummyProduct"
@@ -84,11 +90,14 @@ const CartItem = ({ product, addToCart }) => {
             <div className="makeFlex column">
                 <div className="counter">
                     <span className="quantity">Quantity</span>
-                    <span className={`${product.quantity=0?'disabled':''}`}>-</span>
-                    <span>{product.quantity}</span>
+                    <span onClick={() => removeFromCart(item)}>-</span>
+                    <span>{quantity}</span>
                     <span onClick={() => addToCart(item)}>+</span>
                 </div>
-                <div className="price">{product.price}</div>
+                <div className="makeFlex price vrtlCenter">
+                    <span className="appendRight20">Price: </span>
+                    <span>₹{price}</span>
+                </div>
             </div>
         </li>
     );

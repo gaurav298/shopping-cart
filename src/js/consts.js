@@ -4,7 +4,8 @@ const consts = {
     GET_DATA_ERROR: "GET_DATA_ERROR",
     FILTER_RESULTS: "FILTER_RESULTS",
     ADD_TO_CART: "ADD_TO_CART",
-    MODIFY_CART: "MODIFY_CART"
+    MODIFY_CART: "MODIFY_CART",
+    REMOVE_FROM_CART: "REMOVE_FROM_CART"
 };
 
 export default consts;

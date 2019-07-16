@@ -94,7 +94,7 @@ const ProductItem = ({ product, addToCart }) => {
         <li className="makeFlex column">
             <img src="public/images/dummyProduct.jpg" className="dummyProduct" />
             <span className="productName" dangerouslySetInnerHTML={{__html: productName}}></span>
-            <span className="price">{product.price}</span>
+            <span className="price">₹{product.price}</span>
             <a href="javascript:void(0);" className="addToCartLink" onClick={() => addToCart(product)}>
                 Add To cart
             </a>

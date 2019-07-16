@@ -35,6 +35,8 @@ export const addToCart = (cart, product) => {
         for (let i = 0; i < cart.length; i++) {
             if (cart[i].id === product.id) {
                 cart[i].quantity += 1;
+                cart[i].price =
+                    cart[i].price * cart[i].quantity;
                 return {
                     type: consts.MODIFY_CART,
                     payload: cart
@@ -46,5 +48,25 @@ export const addToCart = (cart, product) => {
     return {
         type: consts.ADD_TO_CART,
         payload: product
+    };
+};
+
+export const removeFromCart = (cart, product) => {
+    for (let i = 0; i < cart.length; i++) {
+        if (cart[i].id === product.id && product.quantity > 1) {
+            cart[i].quantity -= 1;
+            cart[i].price =
+                cart[i].price * cart[i].quantity;
+            return {
+                type: consts.MODIFY_CART,
+                payload: cart
+            };
+        }
+    }
+    product.quantity = 0;
+    const filteredCart = cart.filter(item => product.id !== item.id);
+    return {
+        type: consts.REMOVE_FROM_CART,
+        payload: filteredCart
     };
 };
