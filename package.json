@@ -9,7 +9,9 @@
         "start:prod": "webpack-dev-server --config config/webpack.config.prod.js",
         "build": "webpack --config config/webpack.config.js",
         "build:prod": "webpack --config config/webpack.config.prod.js",
-        "lint": "eslint '**/*.js' '**/*.jsx' -o lintReport"
+        "lint": "eslint '**/*.js' '**/*.jsx' -o lintReport",
+        "predeploy": "npm run build",
+        "deploy": "gh-pages -d build"
     },
     "author": "",
     "license": "ISC",
